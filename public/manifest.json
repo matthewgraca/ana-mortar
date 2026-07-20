@@ -1,0 +1,16 @@
+{
+  "name": "Ana Mortar",
+  "short_name": "AnaMortar",
+  "description": "Ana Mortar web application",
+  "start_url": "/ana-mortar/",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#212529",
+  "icons": [
+    {
+      "src": "/ana-mortar/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

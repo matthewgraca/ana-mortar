@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import mapsData from '../data/maps.json';
+import fs from 'node:fs';
+import path from 'node:path';
+
+export function getStaticPaths() {
+  return mapsData.maps.map((map) => ({
+    params: { slug: map.slug },
+    props: { map },
+  }));
+}
+
+const { map } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const publicDir = path.resolve('./public');
+const placeholder = `${base}/images/placeholder.png`;
+
+function resolveImage(slug, filename) {
+  const filePath = path.join(publicDir, 'images', slug, filename);
+  if (fs.existsSync(filePath)) {
+    return `${base}/images/${slug}/${filename}`;
+  }
+  return placeholder;
+}
+
+const standSrc = resolveImage(map.slug, 'stand.webp');
+const throwSrc = resolveImage(map.slug, 'throw.webp');
+const landSrc = resolveImage(map.slug, 'land.webp');
+---
+
+<Layout title={`${map.name} - Ana Set Nades`}>
+  <main>
+    <a href={`${base}/`} class="back-link">&larr; Back</a>
+    <h1>{map.name}</h1>
+    <div class="images">
+      <section class="image-block">
+        <div class="badge label-badge">📍 Stand</div>
+        <img
+          src={standSrc}
+          alt={`${map.name} - Stand position`}
+          width="640"
+          height="360"
+        />
+        {map.standDescription && (
+          <div class="badge desc-badge">{map.standDescription}</div>
+        )}
+      </section>
+      <section class="image-block">
+        <div class="badge label-badge">🚀 Throw @ {map.time}</div>
+        <img
+          src={throwSrc}
+          alt={`${map.name} - Throw position`}
+          width="640"
+          height="360"
+        />
+        {map.throwDescription && (
+          <div class="badge desc-badge">{map.throwDescription}</div>
+        )}
+      </section>
+      <section class="image-block">
+        <div class="badge label-badge">💥 Land</div>
+        <img
+          src={landSrc}
+          alt={`${map.name} - Land position`}
+          width="640"
+          height="360"
+        />
+        {map.landDescription && (
+          <div class="badge desc-badge">{map.landDescription}</div>
+        )}
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    width: 100%;
+    max-width: 700px;
+    padding: 2rem 1rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .back-link:hover {
+    color: var(--color-primary);
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .images {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .image-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .image-block img {
+    width: 100%;
+    height: auto;
+    border-left: 2px solid var(--color-accent);
+    border-right: 2px solid var(--color-accent);
+  }
+
+  .badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    background: rgba(240, 212, 66, 0.15);
+    border: 2px solid var(--color-accent);
+  }
+
+  .label-badge {
+    border-radius: 8px 8px 0 0;
+    border-bottom: none;
+  }
+
+  .desc-badge {
+    border-radius: 0 0 8px 8px;
+    border-top: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+  }
+
+  .image-block img:last-of-type {
+    border-radius: 0;
+  }
+
+  /* When there's no desc-badge, round the image bottom */
+  .image-block img:last-child {
+    border-bottom: 2px solid var(--color-accent);
+    border-radius: 0 0 8px 8px;
+  }
+
+  /* When desc-badge follows, image gets no bottom radius */
+  .image-block .desc-badge ~ img {
+    border-radius: 0;
+  }
+</style>

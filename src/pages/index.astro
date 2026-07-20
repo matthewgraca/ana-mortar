@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import mapsData from '../data/maps.json';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const base = import.meta.env.BASE_URL;
+const publicDir = path.resolve('./public');
+const placeholder = `${base}/images/placeholder.png`;
+
+function resolveThumbnail(slug) {
+  const filePath = path.join(publicDir, 'images', slug, 'thumbnail.webp');
+  if (fs.existsSync(filePath)) {
+    return `${base}/images/${slug}/thumbnail.webp`;
+  }
+  return placeholder;
+}
+
+const maps = mapsData.maps.map((m) => ({
+  ...m,
+  thumbnailSrc: resolveThumbnail(m.slug),
+}));
+---
+
+<Layout title="Ana Set Nades">
+  <main>
+    <header>
+      <h1>Ana Set Nades</h1>
+      <p class="subtitle">Throw it like Ohtani</p>
+    </header>
+    <input
+      type="search"
+      id="search"
+      placeholder="Search maps..."
+      autocomplete="off"
+      aria-label="Search maps"
+    />
+    <div id="map-list" role="list">
+      {maps.map((map) => (
+        <a
+          href={`${base}/${map.slug}/`}
+          class="map-row"
+          data-name={map.name}
+          role="listitem"
+        >
+          <img
+            src={map.thumbnailSrc}
+            alt={map.name}
+            loading="lazy"
+            width="120"
+            height="68"
+          />
+          <span class="map-name">{map.name}</span>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<script>
+function levenshtein(a, b) {
+  const m = a.length;
+  const n = b.length;
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (a[i - 1] === b[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+      }
+    }
+  }
+  return dp[m][n];
+}
+
+function filterMaps() {
+  const query = document.getElementById('search').value.toLowerCase().trim();
+  const rows = document.querySelectorAll('.map-row');
+
+  if (!query) {
+    rows.forEach((row) => (row.style.display = ''));
+    return;
+  }
+
+  rows.forEach((row) => {
+    const name = row.dataset.name.toLowerCase();
+    // Use substring matching first; fall back to Levenshtein for fuzzy
+    if (name.includes(query)) {
+      row.style.display = '';
+    } else {
+      // Compare Levenshtein distance relative to query length
+      const distance = levenshtein(query, name.slice(0, query.length));
+      const threshold = Math.max(1, Math.floor(query.length * 0.4));
+      row.style.display = distance <= threshold ? '' : 'none';
+    }
+  });
+}
+
+document.getElementById('search').addEventListener('input', filterMaps);
+</script>
+
+<style>
+  main {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem 1rem;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 0.25rem;
+    color: var(--color-primary);
+  }
+
+  .subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    color: var(--color-text);
+    font-style: italic;
+  }
+
+  #search {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--color-secondary);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 1.5rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  #search:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(240, 212, 66, 0.3);
+  }
+
+  #map-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .map-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-secondary);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .map-row:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 2px 8px rgba(43, 120, 205, 0.25);
+  }
+
+  .map-row img {
+    border-radius: 4px;
+    object-fit: cover;
+    width: 120px;
+    height: 68px;
+    flex-shrink: 0;
+  }
+
+  .map-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 480px) {
+    .map-row img {
+      width: 80px;
+      height: 45px;
+    }
+
+    .map-name {
+      font-size: 1rem;
+    }
+  }
+</style>

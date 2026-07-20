@@ -1,0 +1,244 @@
+{
+  "maps": [
+    {
+      "slug": "aatlis",
+      "name": "Aatlis",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "antarctic_peninsula",
+      "name": "Antarctic Peninsula",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "blizzard_world",
+      "name": "Blizzard World",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "busan",
+      "name": "Busan",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "circuit_royal",
+      "name": "Circuit Royal",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "colosseo",
+      "name": "Colosseo",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "dorado",
+      "name": "Dorado",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "eichenwalde",
+      "name": "Eichenwalde",
+      "time": "00:05",
+      "standDescription": "Wedge yourself in the corner just behind the tower",
+      "throwDescription": "Scope in and line up so that the tip of the right part of the triangle just touches the tip of the corner of the tower",
+      "landDescription": "Lands just inside the main doors of spawn"
+    },
+    {
+      "slug": "esperanca",
+      "name": "Esperanca",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "havana",
+      "name": "Havana",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "hollywood",
+      "name": "Hollywood",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "ilios",
+      "name": "Ilios",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "junkertown",
+      "name": "Junkertown",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "kings_row",
+      "name": "Kings Row",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "lijiang_tower",
+      "name": "Lijiang Tower",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "midtown",
+      "name": "Midtown",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "neon_junction",
+      "name": "Neon Junction",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "nepal",
+      "name": "Nepal",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "new_junk_city",
+      "name": "New Junk City",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "new_queen_street",
+      "name": "New Queen Street",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "numbani",
+      "name": "Numbani",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "oasis",
+      "name": "Oasis",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "paraiso",
+      "name": "Paraiso",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "rialto",
+      "name": "Rialto",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "route_66",
+      "name": "Route 66",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "runasapi",
+      "name": "Runasapi",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "samoa",
+      "name": "Samoa",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "shambali_monastery",
+      "name": "Shambali Monastery",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "suravasa",
+      "name": "Suravasa",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    },
+    {
+      "slug": "watchpoint_gibraltar",
+      "name": "Watchpoint Gibraltar",
+      "time": "00:00",
+      "standDescription": "",
+      "throwDescription": "",
+      "landDescription": ""
+    }
+  ]
+}
