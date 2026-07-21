@@ -6,12 +6,12 @@ import path from 'node:path';
 
 const base = import.meta.env.BASE_URL;
 const publicDir = path.resolve('./public');
-const placeholder = `${base}/images/placeholder.png`;
+const placeholder = `${base}/images/icons/placeholder.png`;
 
 function resolveThumbnail(slug) {
-  const filePath = path.join(publicDir, 'images', slug, 'thumbnail.webp');
+  const filePath = path.join(publicDir, 'images', 'maps', slug, 'thumbnail.webp');
   if (fs.existsSync(filePath)) {
-    return `${base}/images/${slug}/thumbnail.webp`;
+    return `${base}/images/maps/${slug}/thumbnail.webp`;
   }
   return placeholder;
 }

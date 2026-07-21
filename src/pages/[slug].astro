@@ -15,12 +15,15 @@ const { map } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
 const publicDir = path.resolve('./public');
-const placeholder = `${base}/images/placeholder.png`;
+const placeholder = `${base}/images/icons/placeholder.png`;
+const standIcon = `${base}/images/icons/stand_icon.webp`;
+const throwIcon = `${base}/images/icons/throw_icon.webp`;
+const landIcon = `${base}/images/icons/land_icon.webp`;
 
 function resolveImage(slug, filename) {
-  const filePath = path.join(publicDir, 'images', slug, filename);
+  const filePath = path.join(publicDir, 'images', 'maps', slug, filename);
   if (fs.existsSync(filePath)) {
-    return `${base}/images/${slug}/${filename}`;
+    return `${base}/images/maps/${slug}/${filename}`;
   }
   return placeholder;
 }
@@ -36,7 +39,7 @@ const landSrc = resolveImage(map.slug, 'land.webp');
     <h1>{map.name}</h1>
     <div class="images">
       <section class="image-block">
-        <div class="badge label-badge">📍 Stand</div>
+        <div class="badge label-badge"><img src={standIcon} alt="" class="badge-icon" width="20" height="20" /> Stand</div>
         <img
           src={standSrc}
           alt={`${map.name} - Stand position`}
@@ -48,7 +51,7 @@ const landSrc = resolveImage(map.slug, 'land.webp');
         )}
       </section>
       <section class="image-block">
-        <div class="badge label-badge">🚀 Throw @ {map.time}</div>
+        <div class="badge label-badge"><img src={throwIcon} alt="" class="badge-icon" width="20" height="20" /> Throw @ {map.time}</div>
         <img
           src={throwSrc}
           alt={`${map.name} - Throw position`}
@@ -60,7 +63,7 @@ const landSrc = resolveImage(map.slug, 'land.webp');
         )}
       </section>
       <section class="image-block">
-        <div class="badge label-badge">💥 Land</div>
+        <div class="badge label-badge"><img src={landIcon} alt="" class="badge-icon" width="20" height="20" /> Land</div>
         <img
           src={landSrc}
           alt={`${map.name} - Land position`}
@@ -112,7 +115,7 @@ const landSrc = resolveImage(map.slug, 'land.webp');
     gap: 0;
   }
 
-  .image-block img {
+  .image-block img:not(.badge-icon) {
     width: 100%;
     height: auto;
     border-left: 2px solid var(--color-accent);
@@ -133,6 +136,13 @@ const landSrc = resolveImage(map.slug, 'land.webp');
     border: 2px solid var(--color-accent);
   }
 
+  .badge-icon {
+    width: 1.2em;
+    height: 1.2em;
+    object-fit: contain;
+    vertical-align: middle;
+  }
+
   .label-badge {
     border-radius: 8px 8px 0 0;
     border-bottom: none;
@@ -145,12 +155,12 @@ const landSrc = resolveImage(map.slug, 'land.webp');
     font-size: 0.95rem;
   }
 
-  .image-block img:last-of-type {
+  .image-block img:not(.badge-icon):last-of-type {
     border-radius: 0;
   }
 
   /* When there's no desc-badge, round the image bottom */
-  .image-block img:last-child {
+  .image-block img:not(.badge-icon):last-child {
     border-bottom: 2px solid var(--color-accent);
     border-radius: 0 0 8px 8px;
   }
