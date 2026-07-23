@@ -59,10 +59,10 @@
     {
       "slug": "eichenwalde",
       "name": "Eichenwalde",
-      "time": "00:05",
-      "standDescription": "Wedge yourself in the corner just behind the tower",
-      "throwDescription": "Scope in and line up so that the tip of the right part of the triangle just touches the tip of the corner of the tower",
-      "landDescription": "Lands just inside the main doors of spawn"
+      "time": "00:07",
+      "standDescription": "",
+      "throwDescription": "NOTE: this doesn't work on the Halloween version of the map :P",
+      "landDescription": ""
     },
     {
       "slug": "esperanca",
